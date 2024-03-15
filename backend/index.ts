@@ -11,6 +11,7 @@ app.use(
   })
 );
 app.use(cookieParser());
+app.use("/files", express.static("files"));
 
 app.use("/api", ApiRouter);
 

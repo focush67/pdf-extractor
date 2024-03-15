@@ -12,7 +12,7 @@ router.get("/", Auth, async (request, response) => {
   const token = request.cookies.token;
   try {
     const profile = await verifyToken(token);
-    console.log(profile);
+
     return response.json({
       user: profile,
       status: 200,
