@@ -15,6 +15,7 @@ import { RegisterFormType, registerSchema } from "@/validations/register";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useToken } from "@/custom-hooks/useToken";
+import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
   useToken();
@@ -22,7 +23,6 @@ const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
     defaultValues: {
       username: "",
-      imageUrl: "",
       password: "",
       confirmPassword: "",
     },
@@ -37,7 +37,7 @@ const RegisterForm = () => {
       toast.success("User successfully registered, proceed to login");
       form.reset();
     } else if (response.data.status === 302) {
-      toast.error("Username already taken, choose another username");
+      toast.error("Please try again");
     }
   };
 
@@ -96,9 +96,15 @@ const RegisterForm = () => {
               )}
             />
           </div>
-          <Button className="w-full mt-6" type="submit">
-            Sign up
-          </Button>
+          {form.formState.isSubmitting ? (
+            <Button className="w-full mt-6" disabled>
+              <Loader className="animate-spin w-full" />
+            </Button>
+          ) : (
+            <Button className="w-full mt-6" type="submit">
+              Sign up
+            </Button>
+          )}
         </form>
         <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
           or

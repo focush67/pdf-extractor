@@ -17,6 +17,7 @@ import { useToken } from "@/custom-hooks/useToken";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "lucide-react";
 
 const LoginForm = () => {
   const [status, setStatus] = useState(false);
@@ -27,7 +28,6 @@ const LoginForm = () => {
     defaultValues: {
       username: "",
       password: "******",
-      imageUrl: "",
     },
   });
 
@@ -85,9 +85,15 @@ const LoginForm = () => {
               )}
             />
           </div>
-          <Button className="w-full mt-6" type="submit">
-            Sign in
-          </Button>
+          {form.formState.isSubmitting ? (
+            <Button className="w-full mt-6" disabled>
+              <Loader className="animate-spin w-full" />
+            </Button>
+          ) : (
+            <Button className="w-full mt-6" type="submit">
+              Login
+            </Button>
+          )}
         </form>
         <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
           or

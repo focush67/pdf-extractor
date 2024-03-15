@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
-import RegisterRouter from "./routes/register/route";
-import LoginRouter from "./routes/login/route";
+import ApiRouter from "./routes/api/route";
 import cookieParser from "cookie-parser";
 const app = express();
 app.use(express.json());
@@ -13,8 +12,7 @@ app.use(
 );
 app.use(cookieParser());
 
-app.use("/api/register", RegisterRouter);
-app.use("/api/login", LoginRouter);
+app.use("/api", ApiRouter);
 
 app.listen(4000, () => {
   console.log("Server running at port 4000");

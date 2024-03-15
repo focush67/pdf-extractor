@@ -6,7 +6,6 @@ export const registerSchema = z
     password: z
       .string()
       .min(10, "Password must be at-least 10 characters long"),
-    imageUrl: z.string().nullable(),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
