@@ -9,7 +9,6 @@ import Home from "./pages/home";
 const App = () => {
   const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL!;
   axios.defaults.baseURL = backendUrl;
-  axios.defaults.withCredentials = true;
   return (
     <Router>
       <Routes>
