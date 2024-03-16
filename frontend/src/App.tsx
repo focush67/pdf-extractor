@@ -7,7 +7,8 @@ import FullPDFView from "./components/others/full-pdf-viewer";
 import EditPDFPages from "./components/others/edit-pdf";
 import Home from "./pages/home";
 const App = () => {
-  axios.defaults.baseURL = "http://localhost:4000";
+  const backendUrl = import.meta.env.VITE_REACT_BACKEND_URL!;
+  axios.defaults.baseURL = backendUrl;
   axios.defaults.withCredentials = true;
   return (
     <Router>
