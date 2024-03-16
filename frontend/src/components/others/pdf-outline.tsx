@@ -22,7 +22,6 @@ export const PDFViewerComponent = ({
 }: PDFProps) => {
   const [pageNumber] = useState<number>(1);
   const location = import.meta.env.VITE_REACT_APP_BACKEND_URL!;
-
   return (
     <div className="bg-gray-300 p-5 mt-2 mb-2 w-fit">
       <h1>{title}</h1>

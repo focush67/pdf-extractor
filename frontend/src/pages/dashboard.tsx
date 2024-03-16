@@ -10,7 +10,7 @@ const Dashboard = () => {
   useToken();
   const { profile } = useUser();
   const [_, setReload] = useState(false);
-  const { pdfs } = usePdfs(profile?.id!);
+  const { pdfs } = usePdfs();
 
   return (
     <div className="min-h-screen bg-gray-200">

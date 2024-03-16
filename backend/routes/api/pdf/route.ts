@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { db } from "../../../utilities/database";
 import multer from "multer";
+import { verifyToken } from "../../../utilities/token-verification";
+import { User } from "@prisma/client";
 const router = Router();
 
 const storage = multer.diskStorage({
@@ -15,13 +17,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/:ownerId", async (request, response) => {
-  const ownerId = request.params.ownerId;
-
+router.get("/", async (request, response) => {
+  const profile = (await verifyToken(request.cookies.token)) as User;
   try {
     const pdfs = await db.pDF.findMany({
       where: {
-        ownerId,
+        ownerId: profile.id,
       },
     });
     return response.json({
@@ -65,9 +66,6 @@ router.post("/", upload.single("file"), async (request, response) => {
       status: 405,
     });
   }
-  return response.json({
-    messsage: "Hit",
-  });
 });
 
 export default router;
