@@ -8,9 +8,10 @@ import { uploadPDF } from "@/utilities/upload";
 
 interface PDFUploadProps {
   id: string;
+  setReload: (load: boolean) => void;
 }
 
-const PDFUpload = ({ id }: PDFUploadProps) => {
+const PDFUpload = ({ id, setReload }: PDFUploadProps) => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -52,6 +53,7 @@ const PDFUpload = ({ id }: PDFUploadProps) => {
       setLoading(false);
       setFile(null);
       setTitle("");
+      setReload(true);
     }
   };
 
@@ -63,6 +65,7 @@ const PDFUpload = ({ id }: PDFUploadProps) => {
         className="w-fit mb-3"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
       <label
         htmlFor="dropzone-file"
@@ -96,6 +99,7 @@ const PDFUpload = ({ id }: PDFUploadProps) => {
           className="hidden"
           accept="application/pdf"
           onChange={handleFileChange}
+          required
         />
       </label>
       <div className="mt-4">
