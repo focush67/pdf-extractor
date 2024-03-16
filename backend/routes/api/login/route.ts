@@ -1,18 +1,15 @@
 import { Router } from "express";
-import Auth from "../../../middlewares/authentication";
 import { verifyToken } from "../../../utilities/token-verification";
-
 import { config } from "dotenv";
 import signToken from "../../../services/sign-token";
 const router = Router();
 
 config();
 
-router.get("/", Auth, async (request, response) => {
-  const token = request.cookies.token;
+router.get("/", async (request, response) => {
+  const token = request.cookies?.token as string;
   try {
     const profile = await verifyToken(token);
-
     return response.json({
       user: profile,
       status: 200,

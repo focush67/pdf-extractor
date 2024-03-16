@@ -7,7 +7,7 @@ export const usePdfs = (ownerId: string) => {
 
   useEffect(() => {
     const fetchPdfs = async () => {
-      const response = await axios.get(`/api/pdf/${ownerId}`);
+      const response = await axios.get(`/api/pdf`);
       setPdfs(response.data.pdfs);
     };
 

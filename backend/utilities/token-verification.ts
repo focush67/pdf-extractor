@@ -10,7 +10,10 @@ export const verifyToken = async (token: string) => {
   const { id } = jwt.verify(token, secret) as { id: string };
   if (!id) {
     console.log("Verification failed ", id);
-    return {};
+    return {
+      id: "none",
+      username: "none",
+    };
   }
   const userProfile = await db.user.findUnique({
     where: {
@@ -19,7 +22,10 @@ export const verifyToken = async (token: string) => {
   });
   if (!userProfile) {
     console.log("No profile found");
-    return {};
+    return {
+      id: "none",
+      username: "none",
+    };
   }
 
   const user = {
