@@ -4,17 +4,21 @@ import RegisterForm from "./pages/register";
 import axios from "axios";
 import Dashboard from "./pages/dashboard";
 import FullPDFView from "./components/others/full-pdf-viewer";
+import EditPDFPages from "./components/others/edit-pdf";
+import Home from "./pages/home";
 const App = () => {
   axios.defaults.baseURL = "http://localhost:4000";
   axios.defaults.withCredentials = true;
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pdf/:pdfId" element={<FullPDFView />} />
+        <Route path="/pdf/edit/:pdfId" element={<EditPDFPages />} />
+        <Route path="*" element={<h1>Kaha Jaara bhai</h1>} />
       </Routes>
     </Router>
   );

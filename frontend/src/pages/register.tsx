@@ -29,23 +29,25 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (values: RegisterFormType) => {
-    const response = await axios.post("api/register", {
-      body: values,
-    });
-
-    if (response.data.status === 200) {
-      toast.success("User successfully registered, proceed to login");
-      form.reset();
-    } else if (response.data.status === 302) {
-      toast.error("Please try again");
+    try {
+      const response = await axios.post("api/register", values);
+      if (response.data.status === 200) {
+        toast.success("User successfully registered, proceed to login");
+        form.reset();
+      } else if (response.data.status === 302) {
+        toast.error("Please try again");
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
     }
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-300 w-fit justify-center p-4 m-auto mt-[8%] rounded-lg">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-fit">
-          <div className="space-y-2">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <h1 className="text-3xl font-bold mb-6">Sign Up</h1>
+      <div className="bg-gray-300 rounded-lg p-6 w-80">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="username"
@@ -59,7 +61,6 @@ const RegisterForm = () => {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="password"
@@ -77,17 +78,16 @@ const RegisterForm = () => {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Re-Enter your password</FormLabel>
+                  <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Re-Enter your password"
                       type="password"
+                      placeholder="Re-enter your password"
                       {...field}
                     />
                   </FormControl>
@@ -95,28 +95,27 @@ const RegisterForm = () => {
                 </FormItem>
               )}
             />
-          </div>
-          {form.formState.isSubmitting ? (
-            <Button className="w-full mt-6" disabled>
-              <Loader className="animate-spin w-full" />
+            <Button type="submit" className="w-full">
+              {form.formState.isSubmitting ? (
+                <Loader className="animate-spin w-5 h-5 mr-2" />
+              ) : (
+                "Sign up"
+              )}
             </Button>
-          ) : (
-            <Button className="w-full mt-6" type="submit">
-              Sign up
-            </Button>
-          )}
-        </form>
-        <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
-          or
+          </form>
+        </Form>
+        <div className="flex items-center justify-center mt-6">
+          <div className="h-px bg-gray-500 w-20" />
+          <span className="mx-4 text-gray-600">or</span>
+          <div className="h-px bg-gray-500 w-20" />
         </div>
-
-        <p className="text-center text-sm text-gray-600 mt-2">
-          If you don&apos;t have an account, please&nbsp;
+        <p className="text-sm text-gray-600 mt-4">
+          Already have an account?{" "}
           <Link className="text-blue-500 hover:underline" to="/login">
             Sign in
           </Link>
         </p>
-      </Form>
+      </div>
     </div>
   );
 };

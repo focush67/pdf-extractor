@@ -2,7 +2,6 @@ import { Document, Page } from "react-pdf";
 import { useState } from "react";
 import { pdfjs } from "react-pdf";
 import { Separator } from "../ui/separator";
-import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -13,9 +12,14 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 interface PDFProps {
   fileLocation: string;
   title: string;
+  ownerId: string;
 }
 
-export const PDFViewerComponent = ({ title, fileLocation }: PDFProps) => {
+export const PDFViewerComponent = ({
+  title,
+  fileLocation,
+  ownerId,
+}: PDFProps) => {
   const [pageNumber] = useState<number>(1);
   const location = import.meta.env.VITE_REACT_APP_BACKEND_URL!;
 
@@ -40,7 +44,9 @@ export const PDFViewerComponent = ({ title, fileLocation }: PDFProps) => {
         <Link to={`/pdf/${fileLocation}`} state={title}>
           Open
         </Link>
-        <Button>Edit</Button>
+        <Link to={`/pdf/edit/${fileLocation}`} state={ownerId}>
+          Edit
+        </Link>
       </div>
       <Separator />
     </div>

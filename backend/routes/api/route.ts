@@ -4,8 +4,8 @@ import RegisterRouter from "./register/route";
 import PDFUploadRouter from "./pdf/route";
 const router = Router();
 
-router.use("/login",LoginRouter);
-router.use("/register",RegisterRouter);
-router.use("/pdf",PDFUploadRouter);
+router.use("/login", LoginRouter);
+router.use("/register", RegisterRouter);
+router.use("/pdf", PDFUploadRouter);
 
 export default router;

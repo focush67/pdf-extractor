@@ -3,9 +3,10 @@ import { PDFViewerComponent } from "./pdf-outline";
 
 interface AllPDFsProps {
   pdfs: PDF[] | [];
+  ownerId: string;
 }
 
-const AllPDFs = ({ pdfs }: AllPDFsProps) => {
+const AllPDFs = ({ pdfs, ownerId }: AllPDFsProps) => {
   return (
     <div className="flex flex-wrap justify-center gap-4">
       {pdfs && pdfs.length > 0 ? (
@@ -14,6 +15,7 @@ const AllPDFs = ({ pdfs }: AllPDFsProps) => {
             key={i}
             fileLocation={pdf.fileName}
             title={pdf.title}
+            ownerId={ownerId}
           />
         ))
       ) : (

@@ -1,6 +1,5 @@
 import AllPDFs from "@/components/others/all-pdfs";
 import PDFUpload from "@/components/others/pdf-upload";
-import { PDFViewerComponent } from "@/components/others/pdf-outline";
 import { Profile } from "@/components/others/profile-card";
 import { usePdfs } from "@/custom-hooks/usePdfs";
 import { useToken } from "@/custom-hooks/useToken";
@@ -26,7 +25,7 @@ const Dashboard = () => {
 
       <PDFUpload id={profile?.id!} setReload={setReload} />
       <div className="flex flex-col w-full mt-2 items-center">
-        <AllPDFs pdfs={pdfs || []} />
+        <AllPDFs pdfs={pdfs || []} ownerId={profile?.id!} />
       </div>
     </div>
   );
