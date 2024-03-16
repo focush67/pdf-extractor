@@ -5,7 +5,7 @@ const router = Router();
 
 router.post("/", async (request, response) => {
   const data = request.body;
-  const { username, password, confirmPassword } = data.body;
+  const { username, password, confirmPassword } = data;
   const result = await registerUser(username, password, confirmPassword);
   if (!result) {
     console.log("Some error registering");

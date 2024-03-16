@@ -29,7 +29,7 @@ router.get("/", Auth, async (request, response) => {
 
 router.post("/", async (request, response) => {
   const data = await request.body;
-  const { username, password } = data.body;
+  const { username, password } = data;
 
   const result = await signToken(username, password);
   if (!result) {
