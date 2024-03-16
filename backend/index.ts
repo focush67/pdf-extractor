@@ -14,10 +14,9 @@ app.use(
     credentials: true,
   })
 );
+app.use("/api", ApiRouter);
 app.use(cookieParser());
 app.use("/files", express.static("files"));
-
-app.use("/api", ApiRouter);
 
 app.listen(4000, () => {
   console.log("Server running at port 4000");
