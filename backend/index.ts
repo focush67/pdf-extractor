@@ -12,7 +12,10 @@ app.use(cookieParser());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173",
+      "https://pdf-extractor-frontend.vercel.app",
+    ],
     credentials: true,
   })
 );

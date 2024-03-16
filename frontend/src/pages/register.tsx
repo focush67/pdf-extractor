@@ -30,7 +30,7 @@ const RegisterForm = () => {
 
   const onSubmit = async (values: RegisterFormType) => {
     try {
-      const response = await axios.post("api/register", values);
+      const response = await axios.post("/api/register", values);
       if (response.data.status === 200) {
         toast.success("User successfully registered, proceed to login");
         form.reset();
