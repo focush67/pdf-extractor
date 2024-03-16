@@ -9,7 +9,6 @@ const FullPDFView = () => {
   const location = import.meta.env.VITE_REACT_APP_BACKEND_URL!;
   const pdfFileLocation = `${location}/files/${params.pdfId}`;
   const [numPages, setNumPages] = useState<number>();
-  const [pageNumber] = useState<number>(1);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -29,7 +28,7 @@ const FullPDFView = () => {
         <h1 className="text-xl font-bold mb-4">{loc.state}</h1>
         <Document file={pdfFileLocation} onLoadSuccess={onDocumentLoadSuccess}>
           {Array.apply(null, Array(numPages))
-            .map((x, i) => i + 1)
+            .map((_, i) => i + 1)
             .map((page) => {
               return (
                 <div key={page} className="mt-2 mb-2 relative">
