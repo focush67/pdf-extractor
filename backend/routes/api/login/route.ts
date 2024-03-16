@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { verifyToken } from "../../../utilities/token-verification";
-
 import { config } from "dotenv";
 import signToken from "../../../services/sign-token";
 const router = Router();
@@ -11,7 +10,6 @@ router.get("/", async (request, response) => {
   const token = request.cookies.token;
   try {
     const profile = await verifyToken(token);
-
     return response.json({
       user: profile,
       status: 200,

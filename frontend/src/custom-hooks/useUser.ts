@@ -6,8 +6,13 @@ export const useUser = () => {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      const response = await axios.get("/api/login");
-      setProfile(response.data.user);
+      try {
+        const response = await axios.get("/api/login");
+        setProfile(response.data.user);
+      } catch (error: any) {
+        console.log("Some error in useUser hook");
+        return null;
+      }
     };
 
     getCurrentUser();

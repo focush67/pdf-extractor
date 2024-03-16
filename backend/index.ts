@@ -9,12 +9,22 @@ config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cookieParser());
 app.use(
   cors({
     origin: ["http://localhost:5173"],
     credentials: true,
   })
 );
+
+app.get("/", (_, response) => {
+  console.log("Home page accessed");
+  return response.json({
+    message: "Home Page accessed",
+    status: 201,
+  });
+});
+
 app.use("/api", ApiRouter);
 
 app.use("/files", express.static("files"));

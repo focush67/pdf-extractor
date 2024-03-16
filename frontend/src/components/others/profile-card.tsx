@@ -1,10 +1,8 @@
-import { LogOut, PointerIcon, User } from "lucide-react";
-
+import { LogOut, PointerIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -40,15 +38,6 @@ export function Profile({ username }: ProfileProps) {
           </Avatar>
           <span>{username}</span>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-
         <DropdownMenuSeparator />
         <DropdownMenuItem className="group hover:bg-gray-300">
           <LogOut className=" mr-2 h-4 w-4" />
