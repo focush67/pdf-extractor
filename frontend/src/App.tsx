@@ -7,7 +7,13 @@ import FullPDFView from "./components/others/full-pdf-viewer";
 import EditPDFPages from "./components/others/edit-pdf";
 import Home from "./pages/home";
 const App = () => {
-  axios.defaults.baseURL = "https://pdf-extractor-backend.vercel.app/";
+  const mode = import.meta.env.MODE;
+  if (mode === "development") {
+    axios.defaults.baseURL = "http://localhost:4000";
+  } else {
+    axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND_URL!;
+  }
+
   axios.defaults.withCredentials = true;
   return (
     <Router>
