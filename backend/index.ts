@@ -3,22 +3,14 @@ import cors from "cors";
 import ApiRouter from "./routes/api/route";
 import cookieParser from "cookie-parser";
 import { config } from "dotenv";
+import { corsOptions } from "./utilities/cors-options";
 
 config();
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cookieParser());
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://pdf-extractor-frontend.vercel.app",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 
 app.get("/", (_, response) => {
   console.log("Home page accessed");

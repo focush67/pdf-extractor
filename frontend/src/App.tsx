@@ -11,7 +11,7 @@ const App = () => {
   if (mode === "development") {
     axios.defaults.baseURL = "http://localhost:4000";
   } else {
-    axios.defaults.baseURL = "https://pdf-extractor-backend.vercel.app";
+    axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND_URL!;
   }
 
   axios.defaults.withCredentials = true;
